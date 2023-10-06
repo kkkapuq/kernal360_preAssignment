@@ -135,7 +135,7 @@ public class ResumeView {
             String temp = sc.nextLine();
             if(temp.equals(""))
                 break;
-            sb.append(temp + "\n");
+            sb.append(temp).append("\n");
         }
         System.out.println("이력서 생성이 완료되었습니다.");
         return sb.toString();

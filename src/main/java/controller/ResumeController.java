@@ -19,12 +19,6 @@ public class ResumeController {
     static Workbook workbook;
     static UserVO userVO;
     static int ROWNUM = 0;
-    public static void main(String[] args) throws IOException {
-        createResume();
-        createResumeSheet();
-        createSelfIntroductionSheet();
-        saveWorkbookToFile();
-    }
 
     // 이력서 생성
     public static void createResume() throws FileNotFoundException {
@@ -54,8 +48,18 @@ public class ResumeController {
         headerRow.createCell(4).setCellValue("전화번호");
         headerRow.createCell(5).setCellValue("생년월일");
 
+        // 너비 조절
+        sheet.setColumnWidth(0, 3000);
+        sheet.setColumnWidth(1, 4000);
+        sheet.setColumnWidth(2, 5000);
+        sheet.setColumnWidth(3, 6000);
+        sheet.setColumnWidth(4, 5000);
+        sheet.setColumnWidth(5, 4000);
+
         Row personInfoRow = sheet.createRow(ROWNUM++);
+        personInfoRow.setHeightInPoints(50);
         inputPhoto();
+
         personInfoRow.createCell(1).setCellValue(userVO.getPersonInfo().getName());
         personInfoRow.createCell(2).setCellValue(userVO.getPersonInfo().getEmail());
         personInfoRow.createCell(3).setCellValue(userVO.getPersonInfo().getAddress());
@@ -110,7 +114,7 @@ public class ResumeController {
         InputStream imageStream = new FileInputStream(userVO.getPersonInfo().getPhoto());
         byte[] bytes = IOUtils.toByteArray(imageStream);
 
-        int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+        int pictureIdx = workbook.addPicture(bytes, HSSFWorkbook.PICTURE_TYPE_PNG);
         imageStream.close();
 
         CreationHelper helper = workbook.getCreationHelper();
@@ -125,7 +129,7 @@ public class ResumeController {
 
         Picture picture = drawing.createPicture(anchor, pictureIdx);
 
-        picture.resize(); // 기본 크기
+        picture.resize(1.0, 0.7); // 기본 크기
     }
 
     // 자기소개 시트 생성
@@ -133,11 +137,10 @@ public class ResumeController {
         sheet = workbook.createSheet("자기소개서");
 
         Row headerRow = sheet.createRow(0);
+
+        sheet.setColumnWidth(0, 20000);
+        headerRow.setHeightInPoints(300);
         headerRow.createCell(0).setCellValue(userVO.getSelfIntroduction());
-    }
-
-    public static void getWrapStyle() {
-
     }
 
     // 이력서 저장
@@ -146,5 +149,13 @@ public class ResumeController {
         FileOutputStream outputStream = new FileOutputStream("이력서.xls");
         workbook.write(outputStream);
         outputStream.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+        createResume();
+        createResumeSheet();
+        createSelfIntroductionSheet();
+        saveWorkbookToFile();
+
     }
 }
