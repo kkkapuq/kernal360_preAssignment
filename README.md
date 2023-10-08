@@ -41,8 +41,8 @@
    **학력정보**를 가지고있는 클래스 `Education`
    **개인정보**를 가지고있는 클래스 `PersonInfo`
    이러한 정보를 포함하고 있는 **통합 객체**인 `UserVO`로 관리되게 됩니다.
-2. **`ResumeView`**에 작성된 메서드를 **`ResumeController`**에서 호출합니다.
-3. **`ResumeController`**에서 호출되고 작성된 내용을 바탕으로, **이력서.xlsx** 라는 파일을 생성합니다.
+2. `ResumeView`에 작성된 메서드를 `ResumeController`에서 호출합니다.
+3. `ResumeController`에서 호출되고 작성된 내용을 바탕으로, **이력서.xlsx** 라는 파일을 생성합니다.
 
 # 구현 기능
 
