@@ -3,9 +3,9 @@ package controller;
 import entity.Career;
 import entity.Education;
 import entity.UserVO;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.ResumeView;
 
 import java.io.*;
@@ -31,7 +31,7 @@ public class ResumeController {
 
     // 이력서 시트 생성
     public static void createResumeSheet() throws IOException {
-        workbook = new HSSFWorkbook();
+        workbook = new XSSFWorkbook();
         sheet = workbook.createSheet("이력서");
         sheet = createPersonInfo(sheet);
         sheet = createEduInfo(sheet);
@@ -114,12 +114,17 @@ public class ResumeController {
         InputStream imageStream = new FileInputStream(userVO.getPersonInfo().getPhoto());
         byte[] bytes = IOUtils.toByteArray(imageStream);
 
-        int pictureIdx = workbook.addPicture(bytes, HSSFWorkbook.PICTURE_TYPE_PNG);
+        int pictureIdx = workbook.addPicture(bytes, XSSFWorkbook.PICTURE_TYPE_PNG);
         imageStream.close();
 
         CreationHelper helper = workbook.getCreationHelper();
         Drawing drawing = sheet.createDrawingPatriarch();
         ClientAnchor anchor = helper.createClientAnchor();
+
+        // 셀 가운데 정렬 설정
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
 
         // 이미지를 삽입할 셀의 위치 설정
         anchor.setCol1(0); // 열 (0부터 시작)
@@ -129,7 +134,7 @@ public class ResumeController {
 
         Picture picture = drawing.createPicture(anchor, pictureIdx);
 
-        picture.resize(1.0, 0.7); // 기본 크기
+        picture.resize(1.0, 0.7); // 사이즈 조절
     }
 
     // 자기소개 시트 생성
@@ -146,7 +151,7 @@ public class ResumeController {
     // 이력서 저장
     public static void saveWorkbookToFile() throws IOException {
         // 엑셀 파일 저장
-        FileOutputStream outputStream = new FileOutputStream("이력서.xls");
+        FileOutputStream outputStream = new FileOutputStream("이력서.xlsx");
         workbook.write(outputStream);
         outputStream.close();
     }
@@ -156,6 +161,5 @@ public class ResumeController {
         createResumeSheet();
         createSelfIntroductionSheet();
         saveWorkbookToFile();
-
     }
 }

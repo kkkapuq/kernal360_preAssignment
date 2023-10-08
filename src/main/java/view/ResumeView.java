@@ -8,9 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 사용자로부터 이력서 정보를 입력
@@ -97,6 +95,16 @@ public class ResumeView {
             }
             list.add(new Education(eduInfo[0], eduInfo[1], eduInfo[2], eduInfo[3]));
         }
+        Collections.sort(list, new Comparator<Education>() {
+            @Override
+            public int compare(Education o1, Education o2) {
+                int date1 = Integer.parseInt(o1.getGraduationYear());
+                int date2 = Integer.parseInt(o2.getGraduationYear());
+
+                // 내림차순 정렬
+                return date2 - date1;
+            }
+        });
 
         return list;
     }
@@ -123,6 +131,18 @@ public class ResumeView {
             }
             list.add(new Career(careerInfo[0], careerInfo[1], careerInfo[2], careerInfo[3]));
         }
+        Collections.sort(list, new Comparator<Career>() {
+            @Override
+            public int compare(Career o1, Career o2) {
+                // 근무기간을 날짜로 파싱하여 비교
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+                LocalDate date1 = LocalDate.parse(o1.getWorkPeriod().split("~")[0], dateFormatter);
+                LocalDate date2 = LocalDate.parse(o2.getWorkPeriod().split("~")[0], dateFormatter);
+
+                // 내림차순 정렬
+                return date2.compareTo(date1);
+            }
+        });
 
         return list;
     }
