@@ -17,7 +17,7 @@
 
 # 클래스 계층도 및 동작 흐름
 
-![클래스계층도.png](https://file.notion.so/f/f/5a188a69-a344-47f8-ae6e-41eb74a81e16/326f8a6a-5961-476e-b889-7fe55eeaa1d7/%ED%81%B4%EB%9E%98%EC%8A%A4%EA%B3%84%EC%B8%B5%EB%8F%84.png?id=c5e63fa8-fc27-45b4-b08d-1d7b8d502d29&table=block&spaceId=5a188a69-a344-47f8-ae6e-41eb74a81e16&expirationTimestamp=1696860000000&signature=ZUSQJLziMFzsaV1xS25ppKRALnXC7TbUBKovkW0rknM&downloadName=%ED%81%B4%EB%9E%98%EC%8A%A4%EA%B3%84%EC%B8%B5%EB%8F%84.png)
+![클래스계층도](https://github.com/kkkapuq/kernal360_preAssignment/assets/44130863/4578851c-64bc-4b1c-8fa8-d3cd20a4bbc5)
 
 1. **경력정보**를 가지고있는 클래스 `Career`
    **학력정보**를 가지고있는 클래스 `Education`
@@ -135,11 +135,11 @@ q
 
 ### 이력서 페이지
 
-![Untitled](https://file.notion.so/f/f/5a188a69-a344-47f8-ae6e-41eb74a81e16/4a7a5c9d-be9d-4d88-9e46-7d4cad276b31/Untitled.png?id=ef1debe4-2b20-4353-a007-4448581bc980&table=block&spaceId=5a188a69-a344-47f8-ae6e-41eb74a81e16&expirationTimestamp=1696860000000&signature=vzU7PKEtScK6yuHIOT4iGgq-7DscfwEW08QsGT7Cz8Q&downloadName=Untitled.png)
+![Untitled](https://github.com/kkkapuq/kernal360_preAssignment/assets/44130863/31c4d771-4ac2-4d2b-84e3-bfe0777e0a47)
 
 ### 자기소개서 페이지
 
-![Untitled](https://file.notion.so/f/f/5a188a69-a344-47f8-ae6e-41eb74a81e16/1aebfb2e-8e73-42af-9096-4f1cc1b193f4/Untitled.png?id=f4af3b4a-7cbe-4021-94f8-39a0ce19e596&table=block&spaceId=5a188a69-a344-47f8-ae6e-41eb74a81e16&expirationTimestamp=1696860000000&signature=K-I6u_fN2SI5JvuU1zH0bRPrH6OFi1CYOE2gq8wLQDU&downloadName=Untitled.png)
+![Untitled](https://github.com/kkkapuq/kernal360_preAssignment/assets/44130863/1d4cb0ce-bd9f-4af0-a26a-f441e86200cd)
 
 # 개발 도구
 
